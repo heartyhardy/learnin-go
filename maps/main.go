@@ -4,6 +4,8 @@ import (
 	"fmt"
 )
 
+// Note that maps are passed by reference
+
 func main() {
 	// Order in a map is not guaranteed
 	//var maps = make(map[string]int)
