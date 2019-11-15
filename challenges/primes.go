@@ -2,8 +2,8 @@ package main
 
 import "fmt"
 
-func getArr() [20]bool {
-	arr := [20]bool{}
+func getArr() [30]bool {
+	arr := [30]bool{}
 	for i := 0; i < len(arr); i++ {
 		arr[i] = true
 	}
@@ -21,5 +21,9 @@ func main() {
 		}
 	}
 
-	fmt.Println(arr)
+	for j := 0; j < len(arr); j++ {
+		if arr[j] {
+			fmt.Println(j)
+		}
+	}
 }
