@@ -1,25 +1,25 @@
-package main
+// package main
 
-import "fmt"
+// import "fmt"
 
-func numtoarr(num uint64) []uint64 {
+// func numtoarr(num uint64) []uint64 {
 
-	cnum := num
-	arr := []uint64{}
-	var div, rest uint64 = 0, 0
+// 	cnum := num
+// 	arr := []uint64{}
+// 	var div, rest uint64 = 0, 0
 
-	for cnum > 0 {
-		div = cnum / 10
-		rest = cnum - div*10
-		arr = append(arr, rest)
-		cnum = div
-	}
+// 	for cnum > 0 {
+// 		div = cnum / 10
+// 		rest = cnum - div*10
+// 		arr = append(arr, rest)
+// 		cnum = div
+// 	}
 
-	return arr
+// 	return arr
 
-}
+// }
 
-func main() {
-	arr := numtoarr(2891123356778289070)
-	fmt.Println(arr)
-}
+// func main() {
+// 	arr := numtoarr(2891123356778289070)
+// 	fmt.Println(arr)
+// }
