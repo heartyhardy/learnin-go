@@ -1,7 +1,7 @@
-package linkedlist
+// package linkedlist
 
-// Element type used in linked list
-type Element struct {
-	Data int
-	Next *Element
-}
+// // Element type used in linked list
+// type Element struct {
+// 	Data int
+// 	Next *Element
+// }
