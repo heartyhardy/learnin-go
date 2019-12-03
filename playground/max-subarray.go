@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 // func maxSubArray(nums []int) int {
 // 	var max, min, last int = 0, 0, 0
 // 	var haszero = false
@@ -50,7 +48,7 @@ func maxSubArray(nums []int) int {
 	return max
 }
 
-func main() {
-	a := []int{-3, -1, 2}
-	fmt.Println(maxSubArray(a))
-}
+// func main() {
+// 	a := []int{-3, -1, 2}
+// 	fmt.Println(maxSubArray(a))
+// }
