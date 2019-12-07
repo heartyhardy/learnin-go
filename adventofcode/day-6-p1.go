@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"io/ioutil"
 	"os"
 	"sort"
@@ -67,7 +66,7 @@ func calculateOrbitalTransfers(orbitData map[string]string) int {
 
 	current := start
 
-	for current != "" && current != "nil" && current != "SAN" {
+	for current != "" && current != "nil" {
 		santaPath[current] = orbitData[current]
 		current = orbitData[current]
 	}
@@ -76,7 +75,7 @@ func calculateOrbitalTransfers(orbitData map[string]string) int {
 
 	current = start
 
-	for current != "" && current != "nil" && current != "YOU" {
+	for current != "" && current != "nil" {
 		yourPath[current] = orbitData[current]
 		current = orbitData[current]
 	}
@@ -96,12 +95,12 @@ func calculateOrbitalTransfers(orbitData map[string]string) int {
 	return transfers
 }
 
-func main() {
-	res := readMapData("day-6-input.txt")
-	orbitNodes := saveOrbits(res)
-	orbits := calculateOrbits(orbitNodes)
-	fmt.Println("Number of Orbits: ", orbits)
+// func main() {
+// 	res := readMapData("day-6-input.txt")
+// 	orbitNodes := saveOrbits(res)
+// 	orbits := calculateOrbits(orbitNodes)
+// 	fmt.Println("Number of Orbits: ", orbits)
 
-	transfers := calculateOrbitalTransfers(orbitNodes)
-	fmt.Println("Minimum number of Transfers: ", transfers)
-}
+// 	transfers := calculateOrbitalTransfers(orbitNodes)
+// 	fmt.Println("Minimum number of Transfers: ", transfers)
+// }
