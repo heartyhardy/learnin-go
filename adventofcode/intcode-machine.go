@@ -28,7 +28,7 @@ func exec(src []int, args []int, cursor int) (flush []int, exitcode int) {
 		opcode, _ := strconv.Atoi(fmtcode[3:5])
 
 		if opcode == 99 {
-			return flush, 0
+			break
 		}
 
 		modes := map[int]string{
@@ -108,6 +108,7 @@ func exec(src []int, args []int, cursor int) (flush []int, exitcode int) {
 			panic("Invalid opcode: " + string(opcode))
 		}
 	}
+	return flush, 0
 }
 
 func parse(input string) (intCodes []int) {

@@ -1,15 +1,27 @@
 package main
 
-// import (
-// 	"fmt"
-// 	ll "heartyhardy/data-structs"
-// )
+import (
+	"fmt"
+	. "heartyhardy/packages/linkedlist"
+)
 
-// func main() {
-// 	el1 := ll.Element{20, nil}
-// 	el2 := ll.Element{30, nil}
+func main() {
 
-// 	el1.Next = &el2
+	var node Node = Node{
+		Value: 10,
+		Next:  nil,
+	}
 
-// 	fmt.Println(el1.Data, el1.Next.Data)
-// }
+	var node2 Node = Node{
+		Value: 20,
+	}
+
+	var ll LinkedLister = &LinkedList{}
+
+	ll.Append(&node)
+	ll.Append(&node2)
+	end := ll.Peek()
+
+	fmt.Println(end)
+
+}
