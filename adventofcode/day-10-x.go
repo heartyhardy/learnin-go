@@ -47,24 +47,26 @@ const (
 
 type void struct{}
 
-func AsteroidMap(input []string) []utils.Coordinate {
-	var belt []utils.Coordinate
+//AsteroidMap ...
+func AsteroidMap(input []string) []Coordinate {
+	var belt []Coordinate
 	for y, line := range input {
 		line = strings.TrimSpace(line)
 
 		for x, r := range line {
 			if r == asteroid {
-				belt = append(belt, utils.Coordinate{X: x, Y: y})
+				belt = append(belt, Coordinate{X: x, Y: y})
 			}
 		}
 	}
 	return belt
 }
 
-func BestLocation(input []string) (utils.Coordinate, int) {
+//BestLocation ...
+func BestLocation(input []string) (Coordinate, int) {
 	belt := AsteroidMap(input)
 	var bestCount int
-	var best utils.Coordinate
+	var best Coordinate
 
 	for _, current := range belt {
 		angles := make(map[float64]void)
@@ -92,10 +94,11 @@ func BestLocation(input []string) (utils.Coordinate, int) {
 	return best, bestCount
 }
 
-func CompleteVaporizationBet(input []string, station utils.Coordinate, bet int) int {
+//CompleteVaporizationBet ...
+func CompleteVaporizationBet(input []string, station Coordinate, bet int) int {
 	belt := AsteroidMap(input)
 
-	targets := make(map[float64]map[int]utils.Coordinate)
+	targets := make(map[float64]map[int]Coordinate)
 	var angles []float64
 
 	for _, target := range belt {
@@ -107,7 +110,7 @@ func CompleteVaporizationBet(input []string, station utils.Coordinate, bet int) 
 		distance := station.Distance(target)
 
 		if _, ok := targets[angle]; !ok {
-			targets[angle] = make(map[int]utils.Coordinate)
+			targets[angle] = make(map[int]Coordinate)
 			angles = append(angles, angle)
 		}
 		targets[angle][distance] = target
