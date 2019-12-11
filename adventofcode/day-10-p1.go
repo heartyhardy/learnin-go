@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"math"
-	"sort"
 	"strings"
 )
 
@@ -78,23 +77,25 @@ func lineofsight(mapdata []coords) []coords {
 	return mapdata
 }
 
-func buildAstroidCache(astroids []coords, astroidID int) map[float64]coords {
+func buildAstroidCache(astroids []coords, astroidID int) (map[float64]coords, map[float64]float64) {
 	var xdiff, ydiff int
 	astroidCache := map[float64]coords{}
+	astroidDist := map[float64]float64{}
 	for _, astroid := range astroids {
-		xdiff = astroid.x - astroids[astroidID].x
-		ydiff = astroids[astroidID].y - astroid.y
+		xdiff = astroids[astroidID].x - astroid.x
+		ydiff = astroid.y - astroids[astroidID].y
 		dist := math.Sqrt(float64(xdiff)*float64(xdiff) + float64(ydiff)*float64(ydiff))
 		astroid.dist = dist
 		atan2 := angle(xdiff, ydiff)
 		if atan2 < 0 {
-			atan2 += 360
+			atan2 = atan2 + 2*math.Pi
 		}
 		if _, ok := astroidCache[atan2]; !ok {
 			astroidCache[atan2] = astroid
 		}
+		astroidDist[dist] = atan2
 	}
-	return astroidCache
+	return astroidCache, astroidDist
 }
 
 func partI(data []byte) ([]coords, int) {
@@ -121,24 +122,8 @@ func partI(data []byte) ([]coords, int) {
 }
 
 func partII(astroids []coords, astroidID int) {
-	astroidCache := buildAstroidCache(astroids, astroidID)
+	astroidCache, astroDist := buildAstroidCache(astroids, astroidID)
 
-	keys := []float64{}
-	dist := []float64{}
-	for k, v := range astroidCache {
-		keys = append(keys, k)
-		dist = append(dist, v.dist)
-	}
-	sort.Float64s(keys)
-	sort.Float64s(dist)
-
-	for i := 0; i < 200; i++ {
-		if keys[i] > 0 {
-			delete(astroidCache, keys[i])
-		}
-	}
-
-	fmt.Println(astroidCache[keys[1]])
 }
 
 func main() {
