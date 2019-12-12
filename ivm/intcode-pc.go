@@ -1,4 +1,4 @@
-package main
+package ivm
 
 import (
 	"fmt"
@@ -13,28 +13,34 @@ const (
 	relative  = "2"
 )
 
+//VM is used to setup the IntcodeVM
 type VM struct {
 	io      string
-	camfeed func() int
+	camfeed func() []int
 	display func(int)
 }
 
+// Feeder interface
 type Feeder interface {
-	Feed() int
+	Feed() []int
 }
 
+// Broadcaster interface
 type Broadcaster interface {
 	Broadcast(int)
 }
 
-func (vm *VM) Feed() int {
+// Feed provides the VM with necessary inputs
+func (vm *VM) Feed() []int {
 	return vm.camfeed()
 }
 
+// Broadcast will fun the provided function when VM outputs something
 func (vm *VM) Broadcast(output int) {
 	vm.display(output)
 }
 
+//Setup will take the necessary io and setup the VM
 func (vm *VM) Setup(io string, feed func() []int, output func(int)) {
 	vm.io = io
 	vm.camfeed = feed
@@ -104,7 +110,8 @@ func exec(intcodes []int, input Feeder, notifier Broadcaster, cursor int) []int 
 			write(3, read(1)*read(2))
 			cursor += args[opcode]
 		case 3:
-			write(1, input.Feed())
+			write(1, input.Feed()[inputpos])
+			inputpos++
 			cursor += args[opcode]
 		case 4:
 			notifier.Broadcast(read(1))
@@ -144,23 +151,10 @@ func exec(intcodes []int, input Feeder, notifier Broadcaster, cursor int) []int 
 	return codes
 }
 
-func partI(filename string) {
-	setup := new(VM)
-	setup.Setup(filename, func() []int {
-		return [1
-	}, func(output int) {
-		fmt.Println(output)
-	})
-	Run(setup)()
-}
-
+//Run the VM with specified params
 func Run(setup *VM) func() {
 	scodes := parse(setup.io)
 	return func() {
 		_ = exec(scodes, setup, setup, 0)
 	}
-}
-
-func main() {
-	partI("day-9-input.txt")
 }

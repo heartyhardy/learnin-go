@@ -1,0 +1,4 @@
+io pos 83439493 io vel 158717
+euro pos 25222868 euro vel 37277
+gany pos 47922349 gany vel 24551
+cali pos 18775965 cali vel 35658
