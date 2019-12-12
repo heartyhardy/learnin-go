@@ -152,7 +152,7 @@ func initialize() *Robot {
 }
 
 func PartI() {
-	puzzleInput := "day-11-input.txt"
+	puzzleInput := "ivm-robot-input.txt"
 	rb := initialize()
 	vm := new(ivm.VM)
 	vm.Setup(puzzleInput, rb.Feed, rb.Receive)

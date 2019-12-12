@@ -59,6 +59,7 @@ func parse(input string) []int {
 	return intcodes
 }
 
+//Executes the intcode program
 func exec(intcodes []int, input Feeder, notifier Broadcaster, cursor int) []int {
 	var opcode, inputpos, relativebase int
 	var modes map[int]string
