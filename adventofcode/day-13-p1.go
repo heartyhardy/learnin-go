@@ -178,7 +178,7 @@ func PartI() {
 
 	fmt.Println("\n\u001b[34m------------------- TILE STATS -----------------------------\u001b[0m")
 	fmt.Printf("\t\t \u001b[32mBLOCK TILES: %v\u001b[0m                   \n", blocks)
-	fmt.Printf("\t\t \u001b[32mWALL TILES: %v \u001b[0m                   \n", walls)
+	fmt.Printf("\t\t \u001b[32mWALL TILES:   %v \u001b[0m                   \n", walls)
 	fmt.Printf("\t\t \u001b[32mEMPTY TILES: %v \u001b[0m                   \n", empties)
 	fmt.Println("\u001b[34m------------------------------------------------------------\u001b[0m")
 	fmt.Println()

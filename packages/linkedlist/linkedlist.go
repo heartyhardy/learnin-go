@@ -1,41 +1,57 @@
 package linkedlist
 
-//Node works as an element for linkedlist
+//Node struct
 type Node struct {
 	Value interface{}
-	Next  *Node
+	next  *Node
 }
 
-//LinkedList : Basic structure
+//LinkedList struct
 type LinkedList struct {
 	start  *Node
 	end    *Node
-	length int
+	Length int
 }
 
-//LinkedLister interface forthe linkedlist
-type LinkedLister interface {
-	Append(*Node)
-	Prepend(*Node)
-	Peek() *Node
+//Appender interface
+type Appender interface {
+	Append(interface{}) *LinkedList
 }
 
-//Append Node into LinkedList
-func (list *LinkedList) Append(newNode *Node) {
-	if list.length == 0 {
-		list.end = newNode
+//Prepender interface
+type Prepender interface {
+	Prepend(interface{}) *LinkedList
+}
+
+//Append an element to the LinkedList
+func (l *LinkedList) Append(val interface{}) *LinkedList {
+	node := new(Node)
+	node.Value = val
+	node.next = nil
+	if l.end != nil {
+		t := l.end
+		t.next = node
+		l.end = node
 	} else {
-		current := list.end
-		current.Next = newNode
-		list.end = newNode
+		l.end = node
+		l.start = node
 	}
-	list.length++
+	l.Length++
+	return l
 }
 
-//Peek at the end element
-func (list *LinkedList) Peek() *Node {
-	if list.length > 0 {
-		return list.end
+//Prepend an element to the LinkedList
+func (l *LinkedList) Prepend(val interface{}) *LinkedList {
+	node := new(Node)
+	node.Value = val
+	node.next = nil
+	if l.start != nil {
+		node.next = l.start
+		l.start = node
+	} else {
+		l.start = node
+		l.end = node
 	}
-	return nil
+	l.Length++
+	return l
 }
