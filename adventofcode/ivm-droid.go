@@ -33,6 +33,18 @@ type Requester interface {
 type Droid struct {
 }
 
+//Command struct stores info on a Droid command
+// base : Base command ex: N / S / W / E
+// inverse direction of a given command ex: N -> S, E -> W
+// length : number of explored routes
+// routes by index [true, false, true, false] = 0 index is open, 1st index is a wall so on (index + 1 is a Command)
+type Command struct {
+	base    int
+	inverse int
+	length  int
+	routes  []bool
+}
+
 //Request sends a message as input to the ivm
 func (d *Droid) Request() []int {
 	return []int{2, 2, 4, 4, 4, 4, 4, 4, 4, 4, 2, 2}
