@@ -39,10 +39,11 @@ type Droid struct {
 // length : number of explored routes
 // routes by index [true, false, true, false] = 0 index is open, 1st index is a wall so on (index + 1 is a Command)
 type Command struct {
-	base    int
-	inverse int
-	length  int
-	routes  []bool
+	base        int
+	inverse     int
+	length      int
+	routes      []bool
+	backtracked bool
 }
 
 //Request sends a message as input to the ivm

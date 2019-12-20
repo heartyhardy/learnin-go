@@ -6,13 +6,14 @@ import (
 )
 
 func TestEnqueue(t *testing.T) {
-	//n := Node{Value: "Hello"}
+	n := Node{Value: "Hello"}
 	q := &Queue{}
-	//expected := &Queue{end: &Node{Value: "Hello"}, Length: 1}
-	//actual := q.Enqueue(n)
+	//expected := &Queue{End: &Node{Value: "Hello"}, Length: 1}
+	q.Enqueue(n)
 
 	tx := q.Dequeue()
-	fmt.Println(tx.Value)
+	fmt.Println((tx.Value).(string)[:2])
+
 	//fmt.Printf("%v %T", fmt.Sprintf("%v", actual.end.Value), fmt.Sprintf("%v", actual.end.Value))
 	// if expected.Length != actual.Length {
 	// 	t.Error("Lens are different!")

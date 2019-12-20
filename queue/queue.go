@@ -41,12 +41,13 @@ func (q *Queue) Enqueue(val interface{}) *Queue {
 }
 
 //Dequeue an item from queue
-func (q *Queue) Dequeue() interface{} {
+func (q *Queue) Dequeue() Node {
 	if q.Start != nil {
 		t := q.Start
 		q.Start = t.Next
 		q.Length--
-		return t
+		t1 := (t.Value).(Node)
+		return t1
 	}
-	return nil
+	return Node{}
 }
