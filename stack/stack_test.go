@@ -74,3 +74,36 @@ func TestPeekEnd(t *testing.T) {
 		t.Error("PeekEnd().Prev.Value should be World")
 	}
 }
+
+func TestPeekEndVal(t *testing.T) {
+	s := Stack{Start: nil, End: nil, length: 0}
+	node1 := new(Node)
+	node1.Value = "Hello"
+	node2 := new(Node)
+	node2.Value = "World"
+
+	sptr := s.Push(node1)
+	sptr = s.Push(node2)
+
+	peekend := (sptr.PeekEnd().Value).(*Node)
+	if peekend.Value != "Hello" {
+		t.Error("PeekEndVal should return Hello")
+	}
+}
+
+func TestStartNext(t *testing.T) {
+	s := Stack{Start: nil, End: nil, length: 0}
+	node1 := new(Node)
+	node1.Value = "Hello"
+	node2 := new(Node)
+	node2.Value = "World"
+
+	sptr := s.Push(node1)
+	sptr = s.Push(node2)
+
+	nextval := (sptr.Start.Next.Value).(*Node)
+
+	if nextval.Value != "Hello" {
+		t.Error("Peek/Start Next should return World")
+	}
+}
