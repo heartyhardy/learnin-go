@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"heartyhardy/ivm"
+	. "heartyhardy/stack"
 )
 
 //Direction flags
@@ -31,6 +32,7 @@ type Requester interface {
 
 //Droid struct
 type Droid struct {
+	commands Stack
 }
 
 //Command struct stores info on a Droid command
