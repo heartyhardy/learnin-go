@@ -1,9 +1,5 @@
 package main
 
-import (
-	"fmt"
-)
-
 // func containsDuplicate(nums []int) bool {
 // 	sort.Ints(nums)
 // 	for i := 0; i < len(nums)-1; i++ {
@@ -26,8 +22,8 @@ func containsDuplicate(nums []int) bool {
 	return false
 }
 
-func main() {
-	a := []int{2, 3, 2}
-	res := containsDuplicate(a)
-	fmt.Println(res)
-}
+// func main() {
+// 	a := []int{2, 3, 2}
+// 	res := containsDuplicate(a)
+// 	fmt.Println(res)
+// }

@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 // func rotate(nums []int, k int) {
 // 	k %= len(nums)
 // 	t := nums[len(nums)-k:]
@@ -33,15 +31,15 @@ func rotate(nums []int, k int) {
 	reverse(l, r)
 }
 
-func main() {
-	nums := []int{2, 1}
-	// 5 4 3 2 1
-	// 3 4 5 2 1
-	// 3 4 5 1 2
+// func main() {
+// 	nums := []int{2, 1}
+// 	// 5 4 3 2 1
+// 	// 3 4 5 2 1
+// 	// 3 4 5 1 2
 
-	// 7, 2, 3, 1, 5, 6, 4
-	// 6, 2, 7, 1, 5, 3, 4
-	// 5, 6, 7, 1, 2, 3, 4
-	rotate(nums, 2)
-	fmt.Println(nums)
-}
+// 	// 7, 2, 3, 1, 5, 6, 4
+// 	// 6, 2, 7, 1, 5, 3, 4
+// 	// 5, 6, 7, 1, 2, 3, 4
+// 	rotate(nums, 2)
+// 	fmt.Println(nums)
+// }
