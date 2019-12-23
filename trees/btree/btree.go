@@ -61,18 +61,37 @@ func (bst *BinarySearchTree) Insert(value int) {
 	}
 }
 
-//Traverse ...
-func (n *Node) Traverse(lvl int) {
+//Lookup searches for a given value inside the tree
+func (bst *BinarySearchTree) Lookup(value int) *Node {
+	currentNode := bst.Root
+	for {
+		if currentNode != nil {
+			switch {
+			case currentNode.Value == value:
+				return currentNode
+			case currentNode.Value < value:
+				currentNode = currentNode.Right
+			case currentNode.Value > value:
+				currentNode = currentNode.Left
+			}
+		} else {
+			return currentNode
+		}
+	}
+}
+
+//Print ...
+func (n *Node) Print(lvl int, side string) {
 	if n == nil {
 		return
 	}
 
 	if n.hasChildren() {
-		fmt.Println(n.Value, lvl)
+		fmt.Println(n.Value, lvl, side)
 		lvl++
-		n.Left.Traverse(lvl)
-		n.Right.Traverse(lvl)
+		n.Left.Print(lvl, "left")
+		n.Right.Print(lvl, "right")
 	} else {
-		fmt.Println(n.Value, lvl)
+		fmt.Println(n.Value, lvl, side)
 	}
 }
