@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"heartyhardy/trees/btree"
 )
 
@@ -14,7 +13,9 @@ func main() {
 	bst.Insert(12)
 	bst.Insert(3)
 
-	x := bst.Lookup(7)
-	fmt.Println(x.Value)
+	//x := bst.Lookup(5)
+	//fmt.Println(x.Value)
 	//bst.Root.Print(0, "root")
+	bst.Remove(12)
+	bst.Root.Print(0, "root")
 }

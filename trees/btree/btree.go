@@ -19,6 +19,47 @@ func (n *Node) hasChildren() bool {
 	return false
 }
 
+func (n *Node) getChildCount() int {
+	count := 0
+	if n.hasChildren() {
+		if n.Left != nil {
+			count++
+		}
+		if n.Right != nil {
+			count++
+		}
+		return count
+	}
+	return 0
+}
+
+func (n *Node) getsOnlyChild() *Node {
+	if n.hasChildren() {
+		if n.Left != nil {
+			return n.Left
+		} else if n.Right != nil {
+			return n.Right
+		}
+	}
+	return nil
+}
+
+func (n *Node) getMinimumLeftNode() *Node {
+	if n.hasChildren() {
+		currentNode := n.Left
+
+		for {
+			if currentNode.Left != nil {
+				currentNode = currentNode.Left
+			} else {
+				break
+			}
+		}
+		return currentNode
+	}
+	return nil
+}
+
 //BinarySearchTree ...
 type BinarySearchTree struct {
 	Root   *Node
@@ -78,6 +119,62 @@ func (bst *BinarySearchTree) Lookup(value int) *Node {
 			return currentNode
 		}
 	}
+}
+
+//Remove a node from bst
+func (bst *BinarySearchTree) Remove(value int) {
+	currentNode := bst.Root
+
+	for {
+		if currentNode != nil {
+			switch {
+			case currentNode.Value == value:
+				//Found node
+				//See if it has children
+				// if YES go right
+				// if NO can delete
+				if !currentNode.hasChildren() {
+					// Delete current node
+					currentNode.Value = 0
+					currentNode.Left = nil
+					currentNode.Right = nil
+					currentNode = nil
+					return
+				}
+
+				switch currentNode.getChildCount() {
+				case 1:
+					// 1 child method
+					n := currentNode.getsOnlyChild()
+					currentNode.Value = n.Value
+					currentNode.Left = nil
+					currentNode.Right = nil
+					n = nil
+					return
+				case 2:
+					// 2 children method
+					minLeft := currentNode.Right.getMinimumLeftNode()
+					if minLeft != nil {
+						currentNode.Value = minLeft.Value
+						minLeft = nil
+						return
+					}
+					currentNode.Value = currentNode.Right.Value
+					currentNode.Right = nil
+					return
+				}
+			case currentNode.Value > value:
+				// Go Left
+				currentNode = currentNode.Left
+			case currentNode.Value < value:
+				// Go Right
+				currentNode = currentNode.Right
+			}
+		} else {
+			break
+		}
+	}
+
 }
 
 //Print ...
