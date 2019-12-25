@@ -16,6 +16,6 @@ func main() {
 	//x := bst.Lookup(5)
 	//fmt.Println(x.Value)
 	//bst.Root.Print(0, "root")
-	bst.Remove(12)
+	bst.Remove(10)
 	bst.Root.Print(0, "root")
 }

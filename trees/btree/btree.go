@@ -147,8 +147,8 @@ func (bst *BinarySearchTree) Remove(value int) {
 					// 1 child method
 					n := currentNode.getsOnlyChild()
 					currentNode.Value = n.Value
-					currentNode.Left = nil
-					currentNode.Right = nil
+					currentNode.Left = n.Left
+					currentNode.Right = n.Right
 					n = nil
 					return
 				case 2:
