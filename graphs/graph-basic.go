@@ -1,5 +1,7 @@
 package graphs
 
+import "fmt"
+
 //Adder ...
 type Adder interface {
 	AddVertex(int)
@@ -28,4 +30,14 @@ func (g *Graph) AddEdge(v1 int, v2 int) {
 	}
 	g.matrix[v1] = append(g.matrix[v1], v2)
 	g.matrix[v2] = append(g.matrix[v2], v1)
+}
+
+//Print ...
+func (g *Graph) Print() {
+	for _, v := range g.matrix {
+		for _, e := range v {
+			fmt.Print(v, " -> ", e)
+		}
+		fmt.Println("")
+	}
 }
