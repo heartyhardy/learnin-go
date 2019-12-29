@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func containsNearbyDuplicate(nums []int, k int) bool {
 	hm := map[int]int{}
 	for i := 0; i < len(nums); i++ {
@@ -14,8 +12,8 @@ func containsNearbyDuplicate(nums []int, k int) bool {
 	return false
 }
 
-func main() {
-	a := []int{1, 0, 1, 1}
-	res := containsNearbyDuplicate(a, 1)
-	fmt.Println(res)
-}
+// func main() {
+// 	a := []int{1, 0, 1, 1}
+// 	res := containsNearbyDuplicate(a, 1)
+// 	fmt.Println(res)
+// }

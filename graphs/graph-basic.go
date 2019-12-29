@@ -15,6 +15,9 @@ type Graph struct {
 
 //AddVertex ...
 func (g *Graph) AddVertex(v int) {
+	if len(g.matrix) == 0 {
+		g.matrix = make(map[int][]int)
+	}
 	if _, ok := g.matrix[v]; !ok {
 		g.matrix[v] = make([]int, 0)
 	}
@@ -34,9 +37,10 @@ func (g *Graph) AddEdge(v1 int, v2 int) {
 
 //Print ...
 func (g *Graph) Print() {
-	for _, v := range g.matrix {
+	for k, v := range g.matrix {
+		fmt.Println(".", k)
 		for _, e := range v {
-			fmt.Print(v, " -> ", e)
+			fmt.Print(" -> ", e)
 		}
 		fmt.Println("")
 	}
