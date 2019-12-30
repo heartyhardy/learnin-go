@@ -11,8 +11,8 @@ func missingNumber(nums []int) int {
 	return missing ^ i
 }
 
-func main() {
-	a := []int{3, 2, 1, 0, 5}
-	res := missingNumber(a)
-	fmt.Println(res, 0^3)
-}
+// func main() {
+// 	a := []int{3, 2, 1, 0, 5}
+// 	res := missingNumber(a)
+// 	fmt.Println(res, 0^3)
+// }
