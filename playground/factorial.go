@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func factorial(n int) int {
 	if n == 1 {
 		return 1
@@ -24,12 +22,12 @@ func reverseString(s string) string {
 	return reverseString(s[1:]) + string(s[0])
 }
 
-func main() {
-	res := factorial(5)
-	fmt.Println("Factorial", res)
+// func main() {
+// 	res := factorial(5)
+// 	fmt.Println("Factorial", res)
 
-	res = fibonacci(6)
-	fmt.Println("Fibonacci", res)
+// 	res = fibonacci(6)
+// 	fmt.Println("Fibonacci", res)
 
-	fmt.Println(reverseString("hello world"))
-}
+// 	fmt.Println(reverseString("hello world"))
+// }
