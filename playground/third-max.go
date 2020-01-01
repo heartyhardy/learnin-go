@@ -15,7 +15,6 @@ func thirdMax(nums []int) int {
 		}
 	}
 	sort.Ints(keys)
-	fmt.Println(keys, max)
 
 	if len(max) < 3 {
 		return keys[len(keys)-1]
