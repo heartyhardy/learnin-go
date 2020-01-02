@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"sort"
 )
 
@@ -23,8 +22,8 @@ func thirdMax(nums []int) int {
 	return keys[0]
 }
 
-func main() {
-	a := []int{1, 0}
-	res := thirdMax(a)
-	fmt.Println("Zeroes moved: ", res)
-}
+// func main() {
+// 	a := []int{1, 0}
+// 	res := thirdMax(a)
+// 	fmt.Println("Zeroes moved: ", res)
+// }
