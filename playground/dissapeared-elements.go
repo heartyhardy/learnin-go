@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"math"
 )
 
@@ -65,8 +64,8 @@ func findDisappearedNumbers(nums []int) []int {
 	return res
 }
 
-func main() {
-	a := []int{4, 3, 2, 7, 8, 2, 3, 1}
-	res := findDisappearedNumbers(a)
-	fmt.Println(res)
-}
+// func main() {
+// 	a := []int{4, 3, 2, 7, 8, 2, 3, 1}
+// 	res := findDisappearedNumbers(a)
+// 	fmt.Println(res)
+// }
