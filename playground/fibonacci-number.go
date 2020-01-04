@@ -35,6 +35,6 @@ func fib(N int) int {
 	return l
 }
 
-func main() {
-	fmt.Println(fib(30))
-}
+// func main() {
+// 	fmt.Println(fib(30))
+// }
