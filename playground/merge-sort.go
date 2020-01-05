@@ -1,26 +1,43 @@
 package main
 
-func merge(nums1 []int, m int, nums2 []int, n int) {
+import "fmt"
 
-	for m > 0 && n > 0 {
-		if nums1[m-1] > nums2[n-1] {
-			nums1[m+n-1] = nums1[m-1]
-			m--
-		} else {
-			nums1[m+n-1] = nums2[n-1]
-			n--
-		}
+func mergeSort(nums []int) []int {
+	if len(nums) < 2 {
+		return nums
 	}
-
-	for n > 0 {
-		nums1[m+n-1] = nums2[n-1]
-		n--
-	}
+	m := len(nums) / 2
+	return merge(mergeSort(nums[:m]), mergeSort(nums[m:]))
 }
 
-// func main() {
-// 	a := []int{2, 3, 5, 7, 0, 5, 6, 7, 0}
-// 	b := []int{1, 2, 4, 6}
-// 	merge(a, 4, b, 4)
-// 	fmt.Println(a)
-// }
+func merge(l, r []int) []int {
+	size, i, j := len(l)+len(r), 0, 0
+	res := make([]int, size, size)
+
+	for k := 0; k < size; k++ {
+		switch {
+		case i == len(l):
+			res[k] = r[j]
+			j++
+		case j == len(r):
+			res[k] = l[i]
+			i++
+		case l[i] > r[j]:
+			res[k] = r[j]
+			j++
+		case l[i] < r[j]:
+			res[k] = l[i]
+			i++
+		case l[i] == r[j]:
+			res[k] = r[j]
+			j++
+		}
+	}
+	return res
+}
+
+func main() {
+	a := []int{1, 5, 3, 4, 6, 2}
+	res := mergeSort(a)
+	fmt.Println(res)
+}
