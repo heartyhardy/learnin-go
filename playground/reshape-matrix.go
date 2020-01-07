@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func matrixReshapeII(nums [][]int, r int, c int) [][]int {
 	cc := len(nums[0])
 	cr := len(nums)
@@ -45,8 +43,8 @@ func matrixReshape(nums [][]int, r int, c int) [][]int {
 	return res
 }
 
-func main() {
-	a := [][]int{{1, 2}, {3, 4}, {5, 6}, {7, 8}}
-	res := matrixReshape(a, 2, 4)
-	fmt.Println(res)
-}
+// func main() {
+// 	a := [][]int{{1, 2}, {3, 4}, {5, 6}, {7, 8}}
+// 	res := matrixReshape(a, 2, 4)
+// 	fmt.Println(res)
+// }
