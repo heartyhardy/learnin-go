@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func findUnsortedSubarray(nums []int) int {
 	if len(nums) < 2 {
 		return 0
@@ -24,8 +22,8 @@ func findUnsortedSubarray(nums []int) int {
 	return size
 }
 
-func main() {
-	a := []int{2, 1, 1, 1, 1}
-	res := findUnsortedSubarray(a)
-	fmt.Println(res)
-}
+// func main() {
+// 	a := []int{2, 1, 1, 1, 1}
+// 	res := findUnsortedSubarray(a)
+// 	fmt.Println(res)
+// }
