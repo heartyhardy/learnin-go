@@ -105,7 +105,7 @@ func Run() {
 	santaDuo := deliverPresentsDuo(data)
 
 	fmt.Println("\n-- AoC 2015: Day 3: Perfectly Spherical Houses in a Vacuum --")
-	fmt.Printf("\nSolo Run: %v \nDuo Run with SantaBot: %v\n", santaRun, santaDuo)
+	fmt.Printf("\nSolo Run: %v \nDuo Run with Santa Bot: %v\n", santaRun, santaDuo)
 	fmt.Println("\n-- DONE --")
 	fmt.Println("")
 }
