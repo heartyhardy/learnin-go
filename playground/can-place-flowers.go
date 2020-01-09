@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func canPlaceFlowersII(flowerbed []int, n int) bool {
 	sum := 0
 	for i, v := range flowerbed {
@@ -37,8 +35,8 @@ func canPlaceFlowers(flowerbed []int, n int) bool {
 	return vc >= n
 }
 
-func main() {
-	a := []int{1, 0, 1}
-	res := canPlaceFlowers(a, 0)
-	fmt.Println(res)
-}
+// func main() {
+// 	a := []int{1, 0, 1}
+// 	res := canPlaceFlowers(a, 0)
+// 	fmt.Println(res)
+// }
