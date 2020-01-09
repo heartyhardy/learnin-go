@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"math"
 	"sort"
 )
@@ -43,8 +42,8 @@ func maximumProduct(nums []int) int {
 	return min1 * min2 * max1
 }
 
-func main() {
-	a := []int{-4, -3, -2, 60}
-	res := maximumProduct(a)
-	fmt.Println(a, res)
-}
+// func main() {
+// 	a := []int{-4, -3, -2, 60}
+// 	res := maximumProduct(a)
+// 	fmt.Println(a, res)
+// }
