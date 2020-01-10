@@ -1,9 +1,5 @@
 package main
 
-import (
-	"fmt"
-)
-
 func checkPossibility(nums []int) bool {
 	c, li := 0, 0
 	for i := 1; i < len(nums); i++ {
@@ -29,8 +25,8 @@ func checkPossibility(nums []int) bool {
 	return false
 }
 
-func main() {
-	a := []int{4, 2, 3}
-	res := checkPossibility(a)
-	fmt.Println(res)
-}
+// func main() {
+// 	a := []int{4, 2, 3}
+// 	res := checkPossibility(a)
+// 	fmt.Println(res)
+// }
