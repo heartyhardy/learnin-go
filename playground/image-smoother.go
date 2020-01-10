@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func imageSmoother(M [][]int) [][]int {
 	// type xy struct {
 	// 	x int
@@ -51,12 +49,12 @@ func imageSmoother(M [][]int) [][]int {
 	return res
 }
 
-func main() {
-	a := [][]int{
-		{1, 1, 1},
-		{1, 0, 1},
-		{1, 1, 1},
-	}
-	res := imageSmoother(a)
-	fmt.Println(res)
-}
+// func main() {
+// 	a := [][]int{
+// 		{1, 1, 1},
+// 		{1, 0, 1},
+// 		{1, 1, 1},
+// 	}
+// 	res := imageSmoother(a)
+// 	fmt.Println(res)
+// }
