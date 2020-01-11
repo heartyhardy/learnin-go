@@ -50,17 +50,12 @@ func notContain(line string) bool {
 
 //Rule 2 - contains at least one letter that appears twice in a row
 func hasRepeatingChars(line string) bool {
-	cnt, lc := 0, rune(line[0])
+	lc := rune(line[0])
 	for i, c := range line {
 		if i == 0 {
 			continue
 		}
 		if lc == c {
-			cnt++
-		} else {
-			cnt = 0
-		}
-		if cnt >= 1 {
 			return true
 		}
 		lc = c
