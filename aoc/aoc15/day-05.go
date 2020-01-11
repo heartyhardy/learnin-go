@@ -22,7 +22,7 @@ func naughtyOrNice(content []string, ruleSet int) int {
 	for _, line := range content {
 		switch ruleSet {
 		case rulesA:
-			if notContains(line) &&
+			if notContain(line) &&
 				hasRepeatingChars(line) &&
 				containsThreeVs(line) {
 				nc++
@@ -38,7 +38,7 @@ func naughtyOrNice(content []string, ruleSet int) int {
 }
 
 //Rule 3 - does not contain the strings ab, cd, pq, or xy
-func notContains(line string) bool {
+func notContain(line string) bool {
 	comps := []string{"ab", "cd", "pq", "xy"}
 	for _, v := range comps {
 		if strings.Contains(line, v) {
