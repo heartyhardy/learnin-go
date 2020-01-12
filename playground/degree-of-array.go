@@ -1,9 +1,5 @@
 package main
 
-import (
-	"fmt"
-)
-
 func findShortestSubArray(nums []int) int {
 	numcnt := make(map[int]int)
 	lencnt := make(map[int][]int)
@@ -25,8 +21,8 @@ func findShortestSubArray(nums []int) int {
 	return minlen + 1
 }
 
-func main() {
-	a := []int{3, 3, 2, 3, 3, 3, 1, 4, 4, 4, 4, 4}
-	res := findShortestSubArray(a)
-	fmt.Println(res)
-}
+// func main() {
+// 	a := []int{3, 3, 2, 3, 3, 3, 1, 4, 4, 4, 4, 4}
+// 	res := findShortestSubArray(a)
+// 	fmt.Println(res)
+// }
