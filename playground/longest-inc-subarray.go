@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"math"
 )
 
@@ -21,8 +20,8 @@ func findLengthOfLCIS(nums []int) int {
 	return max
 }
 
-func main() {
-	a := []int{1, -1, 0, 0, -2}
-	res := findLengthOfLCIS(a)
-	fmt.Println(res)
-}
+// func main() {
+// 	a := []int{1, -1, 0, 0, -2}
+// 	res := findLengthOfLCIS(a)
+// 	fmt.Println(res)
+// }
