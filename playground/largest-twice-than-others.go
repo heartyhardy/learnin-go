@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func dominantIndex(nums []int) int {
 	mx, mi := -1, -1
 	for i, v := range nums {
@@ -18,8 +16,8 @@ func dominantIndex(nums []int) int {
 	return mi
 }
 
-func main() {
-	a := []int{0, 0, 0, 0}
-	res := dominantIndex(a)
-	fmt.Println(res)
-}
+// func main() {
+// 	a := []int{0, 0, 0, 0}
+// 	res := dominantIndex(a)
+// 	fmt.Println(res)
+// }
