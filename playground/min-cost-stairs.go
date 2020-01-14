@@ -1,9 +1,5 @@
 package main
 
-import (
-	"fmt"
-)
-
 func minCostClimbingStairs(cost []int) int {
 	for i := 2; i < len(cost); i++ {
 		cost[i] += min(cost[i-2], cost[i-1])
@@ -19,8 +15,8 @@ func min(x, y int) int {
 	}
 }
 
-func main() {
-	a := []int{10, 15, 20}
-	res := minCostClimbingStairs(a)
-	fmt.Println(res)
-}
+// func main() {
+// 	a := []int{10, 15, 20}
+// 	res := minCostClimbingStairs(a)
+// 	fmt.Println(res)
+// }
