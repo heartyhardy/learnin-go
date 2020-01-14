@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func pivotIndexII(nums []int) int {
 	if len(nums) > 0 {
 		suml := make([]int, len(nums))
@@ -35,8 +33,8 @@ func pivotIndex(nums []int) int {
 	return -1
 }
 
-func main() {
-	a := []int{-1, 1, 1}
-	res := pivotIndex(a)
-	fmt.Println(res)
-}
+// func main() {
+// 	a := []int{-1, 1, 1}
+// 	res := pivotIndex(a)
+// 	fmt.Println(res)
+// }
