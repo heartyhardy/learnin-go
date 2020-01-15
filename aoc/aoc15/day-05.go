@@ -1,7 +1,6 @@
 package aoc15
 
 import (
-	"fmt"
 	"io/ioutil"
 	"strings"
 )
@@ -101,14 +100,14 @@ func repeatsAfterOne(line string) bool {
 }
 
 //Run Solution
-func Run() {
-	content := readInstructions("./inputs/day-05.txt")
-	niceRulesA := naughtyOrNice(content, rulesA)
-	niceRulesB := naughtyOrNice(content, rulesB)
+// func Run() {
+// 	content := readInstructions("./inputs/day-05.txt")
+// 	niceRulesA := naughtyOrNice(content, rulesA)
+// 	niceRulesB := naughtyOrNice(content, rulesB)
 
-	fmt.Println("\n-- AoC 2015: Day 5: Doesn't He Have Intern-Elves For This? --")
-	fmt.Printf("\n😇 Or 😈 (Ruleset A): %v \n😇 Or 😈 (Ruleset B): %v", niceRulesA, niceRulesB)
-	fmt.Println("\n-- DONE --")
-	fmt.Println("")
+// 	fmt.Println("\n-- AoC 2015: Day 5: Doesn't He Have Intern-Elves For This? --")
+// 	fmt.Printf("\n😇 Or 😈 (Ruleset A): %v \n😇 Or 😈 (Ruleset B): %v", niceRulesA, niceRulesB)
+// 	fmt.Println("\n-- DONE --")
+// 	fmt.Println("")
 
-}
+// }

@@ -161,13 +161,13 @@ func lightEmUp(lights [][]bool) {
 }
 
 //Run solution
-func Run() {
-	content := readInstructions("./inputs/day-06.txt")
-	on, off := letThereBeLight(content, onOff)
-	totalBrightness, _ := letThereBeLight(content, brightness)
+// func Run() {
+// 	content := readInstructions("./inputs/day-06.txt")
+// 	on, off := letThereBeLight(content, onOff)
+// 	totalBrightness, _ := letThereBeLight(content, brightness)
 
-	fmt.Println("\n-- AoC 2015: Day 6: Probably a Fire Hazard --")
-	fmt.Printf("\n💡  Turned (ON/OFF): %v / %v \n🔆  Total Brightness: %v", on, off, totalBrightness)
-	fmt.Println("\n-- DONE --")
-	fmt.Println("")
-}
+// 	fmt.Println("\n-- AoC 2015: Day 6: Probably a Fire Hazard --")
+// 	fmt.Printf("\n💡  Turned (ON/OFF): %v / %v \n🔆  Total Brightness: %v", on, off, totalBrightness)
+// 	fmt.Println("\n-- DONE --")
+// 	fmt.Println("")
+// }

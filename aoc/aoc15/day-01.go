@@ -1,7 +1,6 @@
 package aoc15
 
 import (
-	"fmt"
 	"io/ioutil"
 )
 
@@ -37,10 +36,10 @@ func getFloors() (int, int) {
 }
 
 // Run the solution
-func Run() {
-	cnt, pos := getFloors()
-	fmt.Println("\n-- AoC 2015: Day 01 - Not Quite Lisp --")
-	fmt.Printf("\nDestination Floor: %v \nFirst Basement Occurrence: %v", cnt, pos)
-	fmt.Println("\n-- DONE --")
-	fmt.Println("")
-}
+// func Run() {
+// 	cnt, pos := getFloors()
+// 	fmt.Println("\n-- AoC 2015: Day 01 - Not Quite Lisp --")
+// 	fmt.Printf("\nDestination Floor: %v \nFirst Basement Occurrence: %v", cnt, pos)
+// 	fmt.Println("\n-- DONE --")
+// 	fmt.Println("")
+// }
