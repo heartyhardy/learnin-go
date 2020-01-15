@@ -1,6 +1,7 @@
 package aoc15
 
 import (
+	"fmt"
 	"io/ioutil"
 	"math"
 	"strconv"
@@ -43,11 +44,11 @@ func calcAll(paper [][]string) (int64, int64) {
 }
 
 // Run solution
-// func Run() {
-// 	res := readFileAndSplitn("./inputs/day-02.txt")
-// 	paper, ribbons := calcAll(res)
-// 	fmt.Println("\n-- AoC 2015: Day 02 - I Was Told There Would Be No Math --")
-// 	fmt.Printf("\nTotal Paper: %v \nTotal Ribbons: %v\n", paper, ribbons)
-// 	fmt.Println("\n-- DONE --")
-// 	fmt.Println("")
-// }
+func Run() {
+	res := readFileAndSplitn("./inputs/day-02.txt")
+	paper, ribbons := calcAll(res)
+	fmt.Println("\n-- AoC 2015: Day 02 - I Was Told There Would Be No Math --")
+	fmt.Printf("\nTotal Paper: %v \nTotal Ribbons: %v\n", paper, ribbons)
+	fmt.Println("\n-- DONE --")
+	fmt.Println("")
+}

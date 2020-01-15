@@ -20,12 +20,12 @@ func genMd5(key string, zeros int) int {
 	}
 }
 
-//Run Solution
-// func Run() {
-// 	fiveZeros := genMd5("ckczppom", 5)
-// 	sixZeros := genMd5("ckczppom", 6)
-// 	fmt.Println("\n-- AoC 2015: Day 4: The Ideal Stocking Stuffer --")
-// 	fmt.Printf("\nFirst occurrence of 5 leading Zeros: %v \nFirst Basement Occurrence: %v", fiveZeros, sixZeros)
-// 	fmt.Println("\n-- DONE --")
-// 	fmt.Println("")
-// }
+// Run Solution
+func Run() {
+	fiveZeros := genMd5("ckczppom", 5)
+	sixZeros := genMd5("ckczppom", 6)
+	fmt.Println("\n-- AoC 2015: Day 4: The Ideal Stocking Stuffer --")
+	fmt.Printf("\nFirst occurrence of 5 leading Zeros: %v \nFirst Basement Occurrence: %v", fiveZeros, sixZeros)
+	fmt.Println("\n-- DONE --")
+	fmt.Println("")
+}
