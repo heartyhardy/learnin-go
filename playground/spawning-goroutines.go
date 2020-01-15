@@ -55,6 +55,8 @@ func main() {
 
 */
 
+/*
+
 func fib(n, first, second int) int {
 	memo := map[int]int{}
 	if v, ok := memo[n]; ok {
@@ -90,6 +92,48 @@ func main() {
 	ch := make(chan struct{ n, r int })
 	go calcFibs(ch)
 	go printFibs(ch)
+
+	var input string
+	fmt.Scanln(&input)
+}
+
+*/
+
+/*
+	Select
+*/
+
+func yang(ch chan<- string) {
+	for {
+		ch <- `🤡`
+		time.Sleep(2 * time.Second)
+	}
+}
+
+func yin(ch chan<- string) {
+	for {
+		ch <- `👹`
+		time.Sleep(3 * time.Second)
+	}
+}
+
+func yinyang(yinch chan string, yangch chan string) {
+	for {
+		select {
+		case yinmsg := <-yinch:
+			fmt.Printf("\vYin: %v   ", yinmsg)
+		case yangmsg := <-yangch:
+			fmt.Printf("\vYang: %v   ", yangmsg)
+		}
+	}
+}
+
+func main() {
+	yinch := make(chan string)
+	yangch := make(chan string)
+	go yin(yinch)
+	go yang(yangch)
+	go yinyang(yinch, yangch)
 
 	var input string
 	fmt.Scanln(&input)
