@@ -17,22 +17,25 @@ const (
 )
 
 type store struct {
-	wires map[string]wire
-	gates map[string]gate
+	wires       map[string]wire
+	gates       map[string]gate
+	values      map[string]int
+	connections map[string][]string
 }
 
 type wire struct {
 	v      int
 	origin string
+	solved bool
 }
 
 type gate struct {
-	v      int
-	lin    string
-	rin    string
-	out    string
-	op     int
-	solved bool
+	v        int
+	lin      string
+	rin      string
+	out      string
+	op       int
+	resolved bool
 }
 
 func readLines(filename string) (content []string) {
@@ -56,11 +59,12 @@ func parseLine(ds *store, line string) {
 	case 2:
 		if v, err := strconv.Atoi(fields[0]); err == nil {
 			w.v = v
+			w.solved = true
+			ds.values[fields[1]] = v
 		} else {
 			fn.lin = fields[0]
 			fn.out = fields[1]
 			fn.op = eq
-
 		}
 	case 3:
 		fn.op = not
@@ -89,14 +93,35 @@ func parseAll(content []string) (ds *store) {
 	ds = new(store)
 	ds.wires = make(map[string]wire)
 	ds.gates = make(map[string]gate)
-	for _, v := range content {
-		parseLine(ds, v)
+	ds.values = make(map[string]int)
+
+	for _, line := range content {
+		parseLine(ds, line)
 	}
 	return
+}
+
+func mapAssociations(ds *store) *store {
+	ds.connections = make(map[string][]string)
+
+	for fk, fn := range ds.gates {
+		if fn.lin != "" {
+			cons := ds.connections[fn.lin]
+			cons = append(cons, fk)
+			ds.connections[fn.lin] = cons
+		}
+		if fn.rin != "" {
+			cons := ds.connections[fn.rin]
+			cons = append(cons, fk)
+			ds.connections[fn.rin] = cons
+		}
+	}
+	return ds
 }
 
 //Run solution
 func Run() {
 	content := readLines("./inputs/day-07.txt")
-	parseAll(content)
+	ds := parseAll(content)
+	mapAssociations(ds)
 }
