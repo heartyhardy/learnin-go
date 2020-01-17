@@ -1,6 +1,7 @@
 package aoc15
 
 import (
+	"fmt"
 	"io/ioutil"
 	"strconv"
 	"strings"
@@ -16,28 +17,6 @@ const (
 	eq
 )
 
-type store struct {
-	wires       map[string]wire
-	gates       map[string]gate
-	values      map[string]int
-	connections map[string][]string
-}
-
-type wire struct {
-	v      int
-	origin string
-	solved bool
-}
-
-type gate struct {
-	v        int
-	lin      string
-	rin      string
-	out      string
-	op       int
-	resolved bool
-}
-
 func readLines(filename string) (content []string) {
 	data, err := ioutil.ReadFile(filename)
 	if err != nil {
@@ -47,81 +26,77 @@ func readLines(filename string) (content []string) {
 	return
 }
 
-func parseLine(ds *store, line string) {
-	fields := strings.FieldsFunc(line, func(c rune) bool {
-		return !unicode.IsLetter(c) && !unicode.IsNumber(c)
-	})
-
-	w := wire{origin: line}
-	fn := gate{}
-
-	switch len(fields) {
-	case 2:
-		if v, err := strconv.Atoi(fields[0]); err == nil {
-			w.v = v
-			w.solved = true
-			ds.values[fields[1]] = v
-		} else {
-			fn.lin = fields[0]
-			fn.out = fields[1]
-			fn.op = eq
-		}
-	case 3:
-		fn.op = not
-		fn.lin = fields[1]
-		fn.out = fields[2]
-	case 4:
-		switch fields[1] {
-		case "AND":
-			fn.op = and
-		case "OR":
-			fn.op = or
-		case "LSHIFT":
-			fn.op = lshift
-		case "RSHIFT":
-			fn.op = rshift
-		}
-		fn.lin = fields[0]
-		fn.rin = fields[2]
-		fn.out = fields[3]
-	}
-	ds.wires[fields[len(fields)-1]] = w
-	ds.gates[line] = fn
-}
-
-func parseAll(content []string) (ds *store) {
-	ds = new(store)
-	ds.wires = make(map[string]wire)
-	ds.gates = make(map[string]gate)
-	ds.values = make(map[string]int)
-
+func mapFunctions(content ...string) (fn map[string][]string) {
+	fn = make(map[string][]string)
 	for _, line := range content {
-		parseLine(ds, line)
+		fields := strings.FieldsFunc(line, func(c rune) bool {
+			return !unicode.IsLetter(c) && !unicode.IsNumber(c)
+		})
+		fn[fields[len(fields)-1]] = fields
 	}
 	return
 }
 
-func mapAssociations(ds *store) *store {
-	ds.connections = make(map[string][]string)
+func resolve(fn map[string][]string) {
+	track := make([]string, 0)
+	for _, v := range fn {
+		var l, r []string
+		switch len(v) {
+		case 2:
+			_, lerr := strconv.Atoi(v[0])
+			if lerr != nil {
+				l = seek(fn, &track, v[0])
+			} else {
+				l = v
+			}
+		case 3:
+			l = seek(fn, &track, v[1])
+		case 4:
+			_, lerr := strconv.Atoi(v[0])
+			_, rerr := strconv.Atoi(v[2])
 
-	for fk, fn := range ds.gates {
-		if fn.lin != "" {
-			cons := ds.connections[fn.lin]
-			cons = append(cons, fk)
-			ds.connections[fn.lin] = cons
+			if lerr != nil {
+				l = seek(fn, &track, v[0])
+			} else if rerr != nil {
+				r = seek(fn, &track, v[2])
+			}
 		}
-		if fn.rin != "" {
-			cons := ds.connections[fn.rin]
-			cons = append(cons, fk)
-			ds.connections[fn.rin] = cons
+		fmt.Println("LEFT: ", l)
+		fmt.Println("RIGHT: ", r)
+	}
+}
+
+func seek(fn map[string][]string, track *[]string, node string) []string {
+	if v, ok := fn[node]; ok && len(v) == 2 {
+		*track = append(*track, v[0])
+		return *track
+	} else if !ok {
+		return nil
+	}
+
+	v := fn[node]
+	switch len(v) {
+	case 3:
+		*track = append(*track, v[1])
+		return seek(fn, track, v[1])
+	case 4:
+		_, lerr := strconv.Atoi(v[0])
+		_, rerr := strconv.Atoi(v[2])
+
+		if lerr != nil {
+			*track = append(*track, v[0])
+			return seek(fn, track, v[0])
+		} else if rerr != nil {
+			*track = append(*track, v[2])
+			return seek(fn, track, v[2])
 		}
 	}
-	return ds
+	return nil
 }
 
 //Run solution
 func Run() {
 	content := readLines("./inputs/day-07.txt")
-	ds := parseAll(content)
-	mapAssociations(ds)
+	fn := mapFunctions(content...)
+	resolve(fn)
 }
