@@ -32,71 +32,31 @@ func mapFunctions(content ...string) (fn map[string][]string) {
 		fields := strings.FieldsFunc(line, func(c rune) bool {
 			return !unicode.IsLetter(c) && !unicode.IsNumber(c)
 		})
-		fn[fields[len(fields)-1]] = fields
-	}
-	return
-}
 
-func resolve(fn map[string][]string) {
-	track := make([]string, 0)
-	for _, v := range fn {
-		var l, r []string
-		switch len(v) {
+		fops := make([]string, 5)
+		switch len(fields) {
 		case 2:
-			_, lerr := strconv.Atoi(v[0])
-			if lerr != nil {
-				l = seek(fn, &track, v[0])
+			fops[4] = fields[len(fields)-1]
+			if _, err := strconv.Atoi(fields[0]); err != nil {
+				fops[1] = fields[0]
 			} else {
-				l = v
+				fops[3] = fields[0]
 			}
 		case 3:
-			l = seek(fn, &track, v[1])
+			fops[0], fops[1], fops[4] = fields[0], fields[1], fields[len(fields)-1]
 		case 4:
-			_, lerr := strconv.Atoi(v[0])
-			_, rerr := strconv.Atoi(v[2])
-
-			if lerr != nil {
-				l = seek(fn, &track, v[0])
-			} else if rerr != nil {
-				r = seek(fn, &track, v[2])
-			}
+			fops[0], fops[1], fops[2], fops[4] = fields[1], fields[0], fields[2], fields[len(fields)-1]
 		}
-		fmt.Println("LEFT: ", l)
-		fmt.Println("RIGHT: ", r)
+		fn[fields[len(fields)-1]] = fops
 	}
-}
-
-func seek(fn map[string][]string, track *[]string, node string) []string {
-	if v, ok := fn[node]; ok && len(v) == 2 {
-		*track = append(*track, v[0])
-		return *track
-	} else if !ok {
-		return nil
-	}
-
-	v := fn[node]
-	switch len(v) {
-	case 3:
-		*track = append(*track, v[1])
-		return seek(fn, track, v[1])
-	case 4:
-		_, lerr := strconv.Atoi(v[0])
-		_, rerr := strconv.Atoi(v[2])
-
-		if lerr != nil {
-			*track = append(*track, v[0])
-			return seek(fn, track, v[0])
-		} else if rerr != nil {
-			*track = append(*track, v[2])
-			return seek(fn, track, v[2])
-		}
-	}
-	return nil
+	return
 }
 
 //Run solution
 func Run() {
 	content := readLines("./inputs/day-07.txt")
 	fn := mapFunctions(content...)
-	resolve(fn)
+	for k, v := range fn {
+		fmt.Println(k, v)
+	}
 }
