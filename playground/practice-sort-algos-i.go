@@ -84,6 +84,51 @@ func merge20200117(l, r []int) []int {
 	return res
 }
 
+func partition20200117(nums []int) int {
+	pivot := nums[len(nums)-1]
+	pindex := len(nums) - 1
+	l, r := 0, pindex
+	for l <= r {
+		if nums[l] >= pivot {
+			nums[pindex], nums[pindex-1] = nums[pindex-1], nums[pindex]
+			if pindex-l > 1 {
+				nums[pindex], nums[l] = nums[l], nums[pindex]
+			}
+			pindex--
+			r--
+		}
+		l++
+	}
+	return pindex
+}
+
+func quicksort(nums []int) []int {
+	if len(nums) < 2 {
+		return nums
+	}
+
+	left, right := 0, len(nums)-1
+
+	pivot := rand.Int() % len(nums)
+	//fmt.Println(pivot, left, right, nums[left], nums[right], nums[pivot])
+
+	nums[pivot], nums[right] = nums[right], nums[pivot]
+
+	for i := range nums {
+		if nums[i] < nums[right] {
+			nums[left], nums[i] = nums[i], nums[left]
+			left++
+		}
+	}
+
+	nums[left], nums[right] = nums[right], nums[left]
+
+	quicksort(nums[:left])
+	quicksort(nums[left+1:])
+
+	return nums
+}
+
 func main() {
 	nums := []int{1, 5, 3, 2, 7, 5, 7, 9, 6, 11, 10}
 	res := bubblesort20200116(nums)
@@ -96,5 +141,9 @@ func main() {
 	shuffle(nums)
 	res = mergesort20200117(nums)
 	fmt.Println("\n -- Merge sort --")
+	fmt.Println(res)
+	shuffle(nums)
+	fmt.Println("\nQuick sort")
+	res = quicksort(nums)
 	fmt.Println(res)
 }
