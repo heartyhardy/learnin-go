@@ -128,13 +128,13 @@ func yinyang(yinch chan string, yangch chan string) {
 	}
 }
 
-func main() {
-	yinch := make(chan string)
-	yangch := make(chan string)
-	go yin(yinch)
-	go yang(yangch)
-	go yinyang(yinch, yangch)
+// func main() {
+// 	yinch := make(chan string)
+// 	yangch := make(chan string)
+// 	go yin(yinch)
+// 	go yang(yangch)
+// 	go yinyang(yinch, yangch)
 
-	var input string
-	fmt.Scanln(&input)
-}
+// 	var input string
+// 	fmt.Scanln(&input)
+// }

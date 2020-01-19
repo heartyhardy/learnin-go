@@ -129,21 +129,21 @@ func quicksort(nums []int) []int {
 	return nums
 }
 
-func main() {
-	nums := []int{1, 5, 3, 2, 7, 5, 7, 9, 6, 11, 10}
-	res := bubblesort20200116(nums)
-	fmt.Println("\n -- Bubble sort --")
-	fmt.Println(res)
-	shuffle(nums)
-	res = selectionSort20200117(nums)
-	fmt.Println("\n -- Selection sort --")
-	fmt.Println(res)
-	shuffle(nums)
-	res = mergesort20200117(nums)
-	fmt.Println("\n -- Merge sort --")
-	fmt.Println(res)
-	shuffle(nums)
-	fmt.Println("\nQuick sort")
-	res = quicksort(nums)
-	fmt.Println(res)
-}
+// func main() {
+// 	nums := []int{1, 5, 3, 2, 7, 5, 7, 9, 6, 11, 10}
+// 	res := bubblesort20200116(nums)
+// 	fmt.Println("\n -- Bubble sort --")
+// 	fmt.Println(res)
+// 	shuffle(nums)
+// 	res = selectionSort20200117(nums)
+// 	fmt.Println("\n -- Selection sort --")
+// 	fmt.Println(res)
+// 	shuffle(nums)
+// 	res = mergesort20200117(nums)
+// 	fmt.Println("\n -- Merge sort --")
+// 	fmt.Println(res)
+// 	shuffle(nums)
+// 	fmt.Println("\nQuick sort")
+// 	res = quicksort(nums)
+// 	fmt.Println(res)
+// }

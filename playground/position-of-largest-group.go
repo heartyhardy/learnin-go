@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func largeGroupPositions(S string) [][]int {
 	res := make([][]int, 0)
 	l, r, ub := 0, 0, len(S)-1
@@ -22,10 +20,10 @@ func largeGroupPositions(S string) [][]int {
 	return res
 }
 
-func main() {
-	//str := "aaaabcdddeeaabbbbcccdddd"
-	str := "abbbaaaaddd"
-	res := largeGroupPositions(str)
-	fmt.Println(res)
+// func main() {
+// 	//str := "aaaabcdddeeaabbbbcccdddd"
+// 	str := "abbbaaaaddd"
+// 	res := largeGroupPositions(str)
+// 	fmt.Println(res)
 
-}
+// }

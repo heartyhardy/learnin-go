@@ -35,13 +35,13 @@ func isToeplitzMatrix(matrix [][]int) bool {
 //  _ 1, 2, 3, 4
 //  _, 5, 1, 2, 3
 //  _,
-func main() {
-	matrix := [][]int{
-		[]int{1, 2, 3, 4},
-		[]int{5, 1, 2, 3},
-		[]int{9, 5, 1, 2},
-		[]int{10, 9, 5, 1},
-	}
-	res := isToeplitzMatrix(matrix)
-	fmt.Println(res)
-}
+// func main() {
+// 	matrix := [][]int{
+// 		[]int{1, 2, 3, 4},
+// 		[]int{5, 1, 2, 3},
+// 		[]int{9, 5, 1, 2},
+// 		[]int{10, 9, 5, 1},
+// 	}
+// 	res := isToeplitzMatrix(matrix)
+// 	fmt.Println(res)
+// }

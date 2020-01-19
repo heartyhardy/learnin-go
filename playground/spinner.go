@@ -38,8 +38,8 @@ func fibo(n int) int {
 	return fibo(n-2) + fibo(n-1)
 }
 
-func main() {
-	go spinner(100 * time.Millisecond)
-	res := fibo(40)
-	fmt.Println("\nFibonacci n:{} is", res)
-}
+// func main() {
+// 	go spinner(100 * time.Millisecond)
+// 	res := fibo(40)
+// 	fmt.Println("\nFibonacci n:{} is", res)
+// }
