@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 // r -  last index of swap position
 // swp - if swap didn't happen at the end of a pass, break out
@@ -48,6 +51,69 @@ func bbsortStr(strs []string, c chan<- []string) {
 	}
 }
 
+func selsortAnimated(nums []int) {
+	min, swp := 0, false
+	fmt.Print("\033[2J \n")
+	for i := 0; i < len(nums); i++ {
+		min = i
+		highlight(nums, min, 0)
+		clearDelayed(1000)
+		for j := i + 1; j < len(nums); j++ {
+			if nums[min] > nums[j] {
+				highlight(nums, j, 1)
+				clearDelayed(1000)
+				min = j
+				swp = true
+			} else {
+				highlight(nums, j, 3)
+				clearDelayed(500)
+			}
+		}
+		if swp {
+			highlight(nums, i, 2)
+			clearDelayed(1500)
+			highlight(nums, min, 2)
+			clearDelayed(1500)
+		}
+		nums[i], nums[min] = nums[min], nums[i]
+		if swp {
+			highlight(nums, i, 2)
+			clearDelayed(1500)
+			highlight(nums, min, 2)
+			clearDelayed(1500)
+			swp = false
+		} else {
+			highlight(nums, i, 0)
+			clearDelayed(500)
+		}
+	}
+}
+
+func clearDelayed(t time.Duration) {
+	time.Sleep(t * time.Millisecond)
+	fmt.Print("\033[2J \n")
+}
+
+func highlight(nums []int, index int, htype int) {
+	for i, v := range nums {
+		if i == index {
+			switch htype {
+			case 0:
+				fmt.Printf(" [%1v] ", v)
+			case 1:
+				fmt.Printf(" \u001b[34m[%1v]\u001b[0m ", v)
+			case 2:
+				fmt.Printf(" \u001b[31m[%1v]\u001b[0m ", v)
+			case 3:
+				fmt.Printf(" \u001b[33m[%1v]\u001b[0m ", v)
+			}
+			continue
+		}
+		fmt.Printf(" %1v ", v)
+
+	}
+}
+
 func selsort(nums []int, c chan<- []int) {
 	min := 0
 	for i := 0; i < len(nums); i++ {
@@ -86,13 +152,16 @@ func main() {
 	// res = <-in
 	// fmt.Printf(" %4v  \n", res)
 
-	in := make(chan []int)
+	// in := make(chan []int)
+	// nums1 := []int{187, 52, 85, 92, 58, 182, 30, 26, 77, 200, 159, 62, 123, 7, 96, 170, 149, 57, 108, 132, 183, 114, 180, 131, 32}
+	// nums2 := []int{22, 91, 122, 68, 153, 103, 37, 72, 152, 189, 83, 197, 176, 23, 134, 161, 40, 4, 58, 16, 0, 48, 33, 54, 181}
+	// go selsort(nums1, in)
+	// go selsort(nums2, in)
+	// res := <-in
+	// fmt.Printf(" %2v \n", res)
+	// res = <-in
+	// fmt.Printf(" %2v \n", res)
+
 	nums1 := []int{187, 52, 85, 92, 58, 182, 30, 26, 77, 200, 159, 62, 123, 7, 96, 170, 149, 57, 108, 132, 183, 114, 180, 131, 32}
-	nums2 := []int{22, 91, 122, 68, 153, 103, 37, 72, 152, 189, 83, 197, 176, 23, 134, 161, 40, 4, 58, 16, 0, 48, 33, 54, 181}
-	go selsort(nums1, in)
-	go selsort(nums2, in)
-	res := <-in
-	fmt.Printf(" %2v \n", res)
-	res = <-in
-	fmt.Printf(" %2v \n", res)
+	selsortAnimated(nums1)
 }
