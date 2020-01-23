@@ -1,9 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"strings"
-)
+import "fmt"
 
 // r -  last index of swap position
 // swp - if swap didn't happen at the end of a pass, break out
@@ -51,6 +48,20 @@ func bbsortStr(strs []string, c chan<- []string) {
 	}
 }
 
+func selsort(nums []int, c chan<- []int) {
+	min := 0
+	for i := 0; i < len(nums); i++ {
+		min = i
+		for j := i + 1; j < len(nums); j++ {
+			if nums[min] > nums[j] {
+				min = j
+			}
+		}
+		nums[i], nums[min] = nums[min], nums[i]
+	}
+	c <- nums
+}
+
 func main() {
 	// in := make(chan []int)
 	// nums1 := []int{187, 52, 85, 92, 58, 182, 30, 26, 77, 200, 159, 62, 123, 7, 96, 170, 149, 57, 108, 132, 183, 114, 180, 131, 32}
@@ -63,15 +74,25 @@ func main() {
 	// fmt.Printf("%-3v  \n", res)
 	// fmt.Scanln()
 
-	in := make(chan []string)
-	str1 := `c p a b l e bb sd ca ac oi kj wd po`
-	str2 := `🍉 🥞 🍨 🍷 🍔 🍟`
-	strs1 := strings.Fields(str1)
-	strs2 := strings.Fields(str2)
-	go bbsortStr(strs1, in)
-	go bbsortStr(strs2, in)
+	// in := make(chan []string)
+	// str1 := `c p a b l e bb sd ca ac oi kj wd po`
+	// str2 := `🍉 🥞 🍨 🍷 🍔 🍟`
+	// strs1 := strings.Fields(str1)
+	// strs2 := strings.Fields(str2)
+	// go bbsortStr(strs1, in)
+	// go bbsortStr(strs2, in)
+	// res := <-in
+	// fmt.Printf(" %4v \n", res)
+	// res = <-in
+	// fmt.Printf(" %4v  \n", res)
+
+	in := make(chan []int)
+	nums1 := []int{187, 52, 85, 92, 58, 182, 30, 26, 77, 200, 159, 62, 123, 7, 96, 170, 149, 57, 108, 132, 183, 114, 180, 131, 32}
+	nums2 := []int{22, 91, 122, 68, 153, 103, 37, 72, 152, 189, 83, 197, 176, 23, 134, 161, 40, 4, 58, 16, 0, 48, 33, 54, 181}
+	go selsort(nums1, in)
+	go selsort(nums2, in)
 	res := <-in
-	fmt.Printf(" %4v \n", res)
+	fmt.Printf(" %2v \n", res)
 	res = <-in
-	fmt.Printf(" %4v  \n", res)
+	fmt.Printf(" %2v \n", res)
 }
