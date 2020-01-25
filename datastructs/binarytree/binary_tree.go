@@ -15,28 +15,31 @@ type BinaryTree struct {
 
 //Add a node to the tree
 func (btree *BinaryTree) Add(node *Node) *BinaryTree {
+	if node == nil {
+		return nil
+	}
 	if btree.root == nil {
 		btree.root = node
 		return btree
 	}
-	destination := walk(btree.root, node)
-	if destination.value <= node.value {
-		destination.right = node
-		return btree
-	}
-	destination.left = node
+	walkToAndAdd(btree.root, node)
 	return btree
 }
 
-func walk(node *Node, compare *Node) *Node {
-	if node.left == nil && node.right == nil {
-		return node
+//walkToAndAdd search the tree and adds the child
+//after comparing the values of parent and child
+func walkToAndAdd(parent *Node, child *Node) {
+	if parent.value >= child.value {
+		if parent.left == nil {
+			parent.left = child
+			return
+		}
+		walkToAndAdd(parent.left, child)
+		return
 	}
-	if node.left != nil && node.value > compare.value {
-		return walk(node.left, compare)
+	if parent.right == nil {
+		parent.right = child
+		return
 	}
-	if node.right != nil && node.value <= compare.value {
-		return walk(node.right, compare)
-	}
-	return node
+	walkToAndAdd(parent.right, child)
 }
