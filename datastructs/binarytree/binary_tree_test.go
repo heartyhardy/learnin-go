@@ -173,8 +173,8 @@ func TestSearch(t *testing.T) {
 
 	btree := &BinaryTree{}
 	children := []int{40, 7, 39, 37, 14, 42, 43, 24, 13, 44, 12, 30, 20, 16, 26, 38, 29, 50, 9, 28, 25, 10, 1, 21, 41, 48, 45, 2, 49, 18, 5, 8, 32, 47, 27, 33, 4, 34, 17, 36, 15, 31, 19, 46, 6, 23, 35, 11, 22, 3}
-	for i, v := range children {
-		child := &Node{value: int64(v), key: i}
+	for _, v := range children {
+		child := &Node{value: int64(v)}
 		btree.Add(child)
 	}
 
@@ -226,8 +226,8 @@ func BenchmarkSearch(t *testing.B) {
 func TestPrint(t *testing.T) {
 	btree := &BinaryTree{}
 	children := []int{40, 7, 39, 37, 14, 42, 43, 24, 13, 44, 12, 30, 20, 16, 26, 38, 29, 50, 9, 28, 25, 10, 1, 21, 41, 48, 45, 2, 49, 18, 5, 8, 32, 47, 27, 33, 4, 34, 17, 36, 15, 31, 19, 46, 6, 23, 35, 11, 22, 3}
-	for i, v := range children {
-		child := &Node{value: int64(v), key: i}
+	for _, v := range children {
+		child := &Node{value: int64(v)}
 		btree.Add(child)
 	}
 	btree.Print()

@@ -7,7 +7,6 @@ import (
 
 //Node - Tree Node
 type Node struct {
-	key   int
 	value int64
 	left  *Node
 	right *Node
