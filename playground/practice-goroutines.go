@@ -128,40 +128,99 @@ func selsort(nums []int, c chan<- []int) {
 	c <- nums
 }
 
-func main() {
-	// in := make(chan []int)
-	// nums1 := []int{187, 52, 85, 92, 58, 182, 30, 26, 77, 200, 159, 62, 123, 7, 96, 170, 149, 57, 108, 132, 183, 114, 180, 131, 32}
-	// nums2 := []int{22, 91, 122, 68, 153, 103, 37, 72, 152, 189, 83, 197, 176, 23, 134, 161, 40, 4, 58, 16, 0, 48, 33, 54, 181}
-	// go bbsort(nums1, in)
-	// go bbsort(nums2, in)
-	// res := <-in
-	// fmt.Printf("%-3v  \n", res)
-	// res = <-in
-	// fmt.Printf("%-3v  \n", res)
-	// fmt.Scanln()
-
-	// in := make(chan []string)
-	// str1 := `c p a b l e bb sd ca ac oi kj wd po`
-	// str2 := `🍉 🥞 🍨 🍷 🍔 🍟`
-	// strs1 := strings.Fields(str1)
-	// strs2 := strings.Fields(str2)
-	// go bbsortStr(strs1, in)
-	// go bbsortStr(strs2, in)
-	// res := <-in
-	// fmt.Printf(" %4v \n", res)
-	// res = <-in
-	// fmt.Printf(" %4v  \n", res)
-
-	// in := make(chan []int)
-	// nums1 := []int{187, 52, 85, 92, 58, 182, 30, 26, 77, 200, 159, 62, 123, 7, 96, 170, 149, 57, 108, 132, 183, 114, 180, 131, 32}
-	// nums2 := []int{22, 91, 122, 68, 153, 103, 37, 72, 152, 189, 83, 197, 176, 23, 134, 161, 40, 4, 58, 16, 0, 48, 33, 54, 181}
-	// go selsort(nums1, in)
-	// go selsort(nums2, in)
-	// res := <-in
-	// fmt.Printf(" %2v \n", res)
-	// res = <-in
-	// fmt.Printf(" %2v \n", res)
-
-	nums1 := []int{187, 52, 85, 92, 58, 182, 30, 26, 77, 200, 159, 62, 123, 7, 96, 170, 149, 57, 108, 132, 183, 114, 180, 131, 32}
-	selsortAnimated(nums1)
+func mrgsort(nums []int) []int {
+	if len(nums) < 2 {
+		return nums
+	}
+	m := len(nums) / 2
+	return mrg(mrgsort(nums[:m]), mrgsort(nums[m:]))
 }
+
+func mrg(r, l []int) []int {
+	size := len(r) + len(l)
+	res := make([]int, size, size)
+
+	var i, j int
+	for k := 0; k < size; k++ {
+		switch {
+		case i == len(l):
+			res[k] = r[j]
+			j++
+		case j == len(r):
+			res[k] = l[i]
+			i++
+		case l[i] > r[j]:
+			res[k] = r[j]
+			j++
+		case l[i] < r[j]:
+			res[k] = l[i]
+			i++
+		case l[i] == r[j]:
+			res[k] = r[j]
+			j++
+		}
+	}
+	return res
+}
+
+//InsertionSort ...
+func InsertionSort(nums []int) []int {
+	for i := 1; i < len(nums); i++ {
+		k := nums[i]
+		j := i - 1
+
+		for j >= 0 && k < nums[j] {
+			nums[j+1] = nums[j]
+			j--
+		}
+		nums[j+1] = k
+	}
+	return nums
+}
+
+// func main() {
+// 	// in := make(chan []int)
+// 	// nums1 := []int{187, 52, 85, 92, 58, 182, 30, 26, 77, 200, 159, 62, 123, 7, 96, 170, 149, 57, 108, 132, 183, 114, 180, 131, 32}
+// 	// nums2 := []int{22, 91, 122, 68, 153, 103, 37, 72, 152, 189, 83, 197, 176, 23, 134, 161, 40, 4, 58, 16, 0, 48, 33, 54, 181}
+// 	// go bbsort(nums1, in)
+// 	// go bbsort(nums2, in)
+// 	// res := <-in
+// 	// fmt.Printf("%-3v  \n", res)
+// 	// res = <-in
+// 	// fmt.Printf("%-3v  \n", res)
+// 	// fmt.Scanln()
+
+// 	// in := make(chan []string)
+// 	// str1 := `c p a b l e bb sd ca ac oi kj wd po`
+// 	// str2 := `🍉 🥞 🍨 🍷 🍔 🍟`
+// 	// strs1 := strings.Fields(str1)
+// 	// strs2 := strings.Fields(str2)
+// 	// go bbsortStr(strs1, in)
+// 	// go bbsortStr(strs2, in)
+// 	// res := <-in
+// 	// fmt.Printf(" %4v \n", res)
+// 	// res = <-in
+// 	// fmt.Printf(" %4v  \n", res)
+
+// 	// in := make(chan []int)
+// 	// nums1 := []int{187, 52, 85, 92, 58, 182, 30, 26, 77, 200, 159, 62, 123, 7, 96, 170, 149, 57, 108, 132, 183, 114, 180, 131, 32}
+// 	// nums2 := []int{22, 91, 122, 68, 153, 103, 37, 72, 152, 189, 83, 197, 176, 23, 134, 161, 40, 4, 58, 16, 0, 48, 33, 54, 181}
+// 	// go selsort(nums1, in)
+// 	// go selsort(nums2, in)
+// 	// res := <-in
+// 	// fmt.Printf(" %2v \n", res)
+// 	// res = <-in
+// 	// fmt.Printf(" %2v \n", res)
+
+// 	// nums1 := []int{187, 52, 85, 92, 58, 182, 30, 26, 77, 200, 159, 62, 123, 7, 96, 170, 149, 57, 108, 132, 183, 114, 180, 131, 32}
+// 	// selsortAnimated(nums1)
+
+// 	// nums1 := []int{187, 52, 85, 92, 58, 182, 30, 26, 77, 200, 159, 62, 123, 7, 96, 170, 149, 57, 108, 132, 183, 114, 180, 131, 32}
+// 	// res := mrgsort(nums1)
+// 	// fmt.Println(res)
+
+// 	nums1 := []int{
+// 		22, 91, 122, 68, 153, 103, 37, 72, 152, 189, 83, 197, 176, 23, 134, 161, 40, 4, 58, 16, 0, 48, 33, 54, 181}
+// 	res := inssort(nums1)
+// 	fmt.Println(res)
+// }

@@ -24,11 +24,11 @@ func moveEmojiBack(emoji string, distance int) {
 	}
 }
 
-func main() {
-	avatar := `🐯`
-	distance := 100
-	fmt.Print("\033[?25l")
-	fmt.Print("\033[2J")
-	moveEmoji(avatar, distance)
-	fmt.Print("\033[?25h")
-}
+// func main() {
+// 	avatar := `🐯`
+// 	distance := 100
+// 	fmt.Print("\033[?25l")
+// 	fmt.Print("\033[2J")
+// 	moveEmoji(avatar, distance)
+// 	fmt.Print("\033[?25h")
+// }
