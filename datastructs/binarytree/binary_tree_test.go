@@ -1,6 +1,12 @@
 package binarytree
 
-import "testing"
+import (
+	"fmt"
+	"io/ioutil"
+	"strconv"
+	"strings"
+	"testing"
+)
 
 func TestAdd(t *testing.T) {
 	t.Run("It should add a root", func(t *testing.T) {
@@ -163,6 +169,66 @@ func TestWalkTo(t *testing.T) {
 	})
 }
 
-func TestPrint(t *testing.T) {
+func TestSearch(t *testing.T) {
 
+	btree := &BinaryTree{}
+	children := []int{40, 7, 39, 37, 14, 42, 43, 24, 13, 44, 12, 30, 20, 16, 26, 38, 29, 50, 9, 28, 25, 10, 1, 21, 41, 48, 45, 2, 49, 18, 5, 8, 32, 47, 27, 33, 4, 34, 17, 36, 15, 31, 19, 46, 6, 23, 35, 11, 22, 3}
+	for i, v := range children {
+		child := &Node{value: int64(v), key: i}
+		btree.Add(child)
+	}
+
+	t.Run("It should return nil when value not found", func(t *testing.T) {
+		var expected *Node = nil
+		actual := btree.Search(int64(9999))
+
+		if actual != nil {
+			t.Errorf("Search result should return nil, expected: %v actual %v ", expected, actual)
+		}
+	})
+
+	for _, child := range children {
+		t.Run("It should find and return each value", func(t *testing.T) {
+			expected := &Node{value: int64(child)}
+			actual := btree.Search(int64(child))
+
+			if actual == nil {
+				t.Errorf("Search result should return 50, expected: %v actual %v ", expected.value, actual.value)
+			}
+			if actual.value != expected.value {
+				t.Errorf("Search result should match, expected: %v actual %v ", expected.value, actual.value)
+			}
+		})
+	}
+
+}
+
+func BenchmarkSearch(t *testing.B) {
+	btree := &BinaryTree{}
+	data, _ := ioutil.ReadFile("benchmark.txt")
+	fields := strings.Fields(string(data))
+
+	for _, val := range fields {
+		v64, _ := strconv.ParseInt(val, 10, 64)
+		node := &Node{value: v64}
+		btree.Add(node)
+	}
+	t.Run("Search a node in this array", func(t *testing.B) {
+		var j int64
+		for j = 0; j < int64(len(fields)); j = j + 10 {
+			v64, _ := strconv.ParseInt(fields[j], 10, 64)
+			res := btree.Search(v64)
+			fmt.Println("Result: ", res.value)
+		}
+	})
+}
+
+func TestPrint(t *testing.T) {
+	btree := &BinaryTree{}
+	children := []int{40, 7, 39, 37, 14, 42, 43, 24, 13, 44, 12, 30, 20, 16, 26, 38, 29, 50, 9, 28, 25, 10, 1, 21, 41, 48, 45, 2, 49, 18, 5, 8, 32, 47, 27, 33, 4, 34, 17, 36, 15, 31, 19, 46, 6, 23, 35, 11, 22, 3}
+	for i, v := range children {
+		child := &Node{value: int64(v), key: i}
+		btree.Add(child)
+	}
+	btree.Print()
 }
