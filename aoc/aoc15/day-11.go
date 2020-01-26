@@ -6,7 +6,7 @@ type rstring []rune
 
 func (rs *rstring) Inc() *rstring {
 	for i := len(*rs) - 1; i >= 0; i-- {
-		if (*rs)[i] >= 57 && (*rs)[i] <= 48 {
+		if (*rs)[i] >= 57 && (*rs)[i] < 97 {
 			(*rs)[i] = 48
 		} else if (*rs)[i] >= 122 {
 			(*rs)[i] = 97
@@ -99,5 +99,4 @@ func Run() {
 	fmt.Printf("\n🛡️    First Password: %24v \n🛡️ 🛡️  Second Password: %23v\n", string(first), string(second))
 	fmt.Println("\n-- DONE --")
 	fmt.Println("")
-
 }
