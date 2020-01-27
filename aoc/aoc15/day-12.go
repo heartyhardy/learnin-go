@@ -82,7 +82,13 @@ func Run() {
 
 	fmt.Println("\n-- Day 12: JSAbacusFramework.io --")
 	fmt.Printf("\n➕     Sum up all: %26v \n➕  🔴  Sum NO REDS: %24v\n", sum, sumNoReds)
-	fmt.Println("\n-- DONE --")
+	fmt.Println(`
+	______                 
+	|  _  \                
+	| | | |___  _ __   ___ 
+	| | | / _ \| '_ \ / _ \
+	| |/ / (_) | | | |  __/
+	|___/ \___/|_| |_|\___|`)
 	fmt.Println("")
 
 }
