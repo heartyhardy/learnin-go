@@ -76,11 +76,13 @@ func sumAllNumsNoReds(t interface{}) int {
 func Run() {
 	contents := readJSONData("./inputs/day-12.txt")
 	sum := sumAllNums(contents)
-	fmt.Println(sum)
-
 	var master interface{}
 	json.Unmarshal(contents, &master)
 	sumNoReds := sumAllNumsNoReds(master)
-	fmt.Println(sumNoReds)
+
+	fmt.Println("\n-- Day 12: JSAbacusFramework.io --")
+	fmt.Printf("\n➕     Sum up all: %26v \n➕  🔴  Sum NO REDS: %24v\n", sum, sumNoReds)
+	fmt.Println("\n-- DONE --")
+	fmt.Println("")
 
 }
