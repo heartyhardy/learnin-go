@@ -105,8 +105,8 @@ func Run() {
 	newWinner := letItRacePerSec(raindeerRacers, 2503)
 
 	fmt.Printf("\n\t -- Day 14: Reindeer Olympics --\n")
-	fmt.Printf("\n\t🦌  %-10v ran %20v Km \n", winner.name, winner.distance)
-	fmt.Printf("\n\t🦌  %-10v ran %20v Km \n", newWinner.name, newWinner.distance+newWinner.points)
+	fmt.Printf("\n\t🦌  %-10v ran \u001b[33m%20v Km\u001b[0m \n", winner.name, winner.distance)
+	fmt.Printf("\n\t🦌  %-10v ran %20v Km and earned \u001b[33m%v points!\u001b[0m \n", newWinner.name, newWinner.distance+newWinner.points, newWinner.points)
 	fmt.Println(`
 	______
 	|  _  \
