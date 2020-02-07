@@ -2,10 +2,12 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"os/exec"
 	"time"
 )
 
-const matrixSize = 10
+const matrixSize = 15
 
 const (
 	unexplored = iota
@@ -84,13 +86,14 @@ func runDFS(g *grid) {
 			(*g)[v.y][v.x].v = exploring
 			printGrid(g)
 			(*g)[v.y][v.x].v = explored
-			time.Sleep(250 * time.Millisecond)
+			time.Sleep(150 * time.Millisecond)
 		} else if !ok {
 			var popped cell
+			(*g)[next.y][next.x].v = backtracking
 			popped, cellstack = cellstack.pop()
 			(*g)[popped.y][popped.x].v = backtracking
 			printGrid(g)
-			time.Sleep(100 * time.Millisecond)
+			time.Sleep(150 * time.Millisecond)
 		}
 	}
 
@@ -114,27 +117,35 @@ func getAdjacent(g *grid, mstack map[xy]bool, c cell) (*cell, bool) {
 }
 
 func printGrid(g *grid) {
-	fmt.Printf("\033[2J")
+	fmt.Printf("\033[2J\033[;H")
 	for _, rows := range *g {
 		for _, col := range rows {
 			switch col.v {
 			case explored:
-				fmt.Printf(" \u001b[38;5;208m%v\u001b[0m ", "◼")
+				fmt.Printf("\u001b[38;5;92m%v\033[0m", " ◼ ")
 			case exploring:
-				fmt.Printf(" \u001b[38;5;27m%v\u001b[0m ", "◼")
+				fmt.Printf("\u001b[38;5;208m%v\033[0m", " ◼ ")
 			case backtracking:
-				fmt.Printf(" \u001b[38;5;112m%v\u001b[0m ", "◼")
+				fmt.Printf("\u001b[38;5;71m%v\033[0m", " ◼ ")
 			default:
-				fmt.Printf(" %v ", "◽")
+				fmt.Printf("%v", " ◻ ")
 			}
 		}
 		fmt.Println()
 	}
+	fmt.Printf("\n\u001b[38;5;208m %v \u001b[0m Exploring\u001b[38;5;92m %v\u001b[0m Explored \u001b[38;5;71m %v \u001b[0m Backtracked", "◼", "◼", "◼")
 	fmt.Println()
 }
 
+func tput(arg string) error {
+	cmd := exec.Command("tput", arg)
+	cmd.Stdout = os.Stdout
+	return cmd.Run()
+}
+
 func main() {
+	tput("civis") // hide
 	g := createGrid()
 	runDFS(&g)
-
+	tput("cvvis") // show
 }
